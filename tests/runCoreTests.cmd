@@ -1,13 +1,13 @@
 @echo off
 
 echo -----------------------------
-echo Running dotnet restore
+echo Running Core 2.0 Unit tests
 echo -----------------------------
 
-call dotnet restore "CodingTasks.BlockingQueue.StressTests\CodingTasks.BlockingQueue.StressTests.csproj"
+call dotnet test "CodingTasks.Algorithm.Tests\CodingTasks.Algorithm.Tests.csproj" --configuration Release --framework netcoreapp2
 
 if NOT %ERRORLEVEL% == 0 (
-    echo Dotnet restore has failed
+    echo Core 2.0 Unit tests has failed
     goto end
 )
 
