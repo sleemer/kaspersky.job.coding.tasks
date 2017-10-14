@@ -37,3 +37,5 @@ packages/
 nuget.exe
 docs/guidehtml
 docs/apihtml
+.vscode
+omnisharp.json

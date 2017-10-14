@@ -1,0 +1,1 @@
+dotnet test CodingTasks.BlockingQueue.StressTests/CodingTasks.BlockingQueue.StressTests.csproj --configuration Release --framework netcoreapp2.0
