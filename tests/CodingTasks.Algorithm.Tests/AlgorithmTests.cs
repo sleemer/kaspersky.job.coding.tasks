@@ -17,9 +17,9 @@ namespace CodingTasks.Algorithm.Tests
         }
 
         [Theory]
-        [InlineData(new[] { 1, 2, 1, 1, 0 }, 2, "0,2;1,1")]
-        [InlineData(new[] { 1, 2, 1, 7, 1, 0, 6, 3 }, 9, "2,7;3,6")]
-        [InlineData(new[] { 11, 2, 1, 7, 1, 0, 6, 3, 5 }, 11, "0,11;5,6")]
+        [InlineData(new[] { 1, 2, 1, 1, 0 }, 2, "(0,2) (1,1)")]
+        [InlineData(new[] { 1, 2, 1, 7, 1, 0, 6, 3 }, 9, "(2,7) (3,6)")]
+        [InlineData(new[] { 11, 2, 1, 7, 1, 0, 6, 3, 5 }, 11, "(0,11) (5,6)")]
         public void ShouldFindPairsOfNumbersWithSum(int[] numbers, int sum, string strExpected)
         {
             // arrange
@@ -46,8 +46,8 @@ namespace CodingTasks.Algorithm.Tests
         }
 
         private static Tuple<int, int>[] CreateArrayOfTuplesFromString(string str)
-            => str.Split(new[] { ";" }, StringSplitOptions.None)
-                  .Select(pair => pair.Split(new[] { "," }, StringSplitOptions.None))
+            => str.Split(new[] { " " }, StringSplitOptions.None)
+                  .Select(pair => pair.Split(new[] { ",", "(", ")" }, StringSplitOptions.RemoveEmptyEntries))
                   .Select(pair => Tuple.Create(int.Parse(pair[0]), int.Parse(pair[1])))
                   .ToArray();
     }
