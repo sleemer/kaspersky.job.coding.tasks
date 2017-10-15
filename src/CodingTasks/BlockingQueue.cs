@@ -11,6 +11,11 @@ namespace CodingTasks
     public sealed class BlockingQueue<T> : IDisposable
     {
         private readonly Queue<T> _queue = new Queue<T>();
+        
+        // PERF: I considered and tested a few synchronization techniques including:
+        //       - thread-safe queue as described in C# via CLR book;
+        //       - using AutoResetEvent instead of ManualResetEventSlim;
+        //       But the better performance I get on stress tests (macOS+.Net Core 2.0) with the solution below.
         private readonly object _barier = new object();                                              // Used to sync access to the queue from concurrent threads
         private readonly ManualResetEventSlim _newObjectAvailable = new ManualResetEventSlim(false); // Used to awake threads that are blocked on Pop
 
