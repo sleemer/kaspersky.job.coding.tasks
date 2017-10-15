@@ -17,7 +17,9 @@ namespace CodingTasks.Tests
         }
 
         [Theory]
-        [InlineData(new[] { 1, 2, 1, 1, 0 }, 2, "(0,2) (1,1)")]
+        [InlineData(new[] { 1, 3 }, 4, "(1,3)")]                                // Edge case - 1 pair
+        [InlineData(new[] { 0, 1, -1 }, 0, "(-1,1)")]
+        [InlineData(new[] { 1, 2, 1, 1, 0 }, 2, "(0,2) (1,1)")]                 // Example case from the task
         [InlineData(new[] { 1, 2, 1, 7, 1, 0, 6, 3 }, 9, "(2,7) (3,6)")]
         [InlineData(new[] { 11, 2, 1, 7, 1, 0, 6, 3, 5 }, 11, "(0,11) (5,6)")]
         public void ShouldFindPairsOfNumbersWithSum(int[] numbers, int sum, string strExpected)
@@ -33,7 +35,8 @@ namespace CodingTasks.Tests
         }
 
         [Theory]
-        [InlineData(new int[] { }, 2)]
+        [InlineData(new int[] { }, 2)]                      // Edge case - 0 numbers
+        [InlineData(new int[] { 1 }, 2)]                    // Edge case - 1 number
         [InlineData(new[] { 1, 2, 1, 7, 1, 0, 6, 3 }, 100)]
         public void ShouldNotFindPairsOfNumbersWithSum(int[] numbers, int sum)
         {
