@@ -5,10 +5,10 @@ using System.Threading;
 namespace CodingTasks
 {
     /// <summary>
-    /// A thread-safe blocking Queue of generic itmes.
+    /// A thread-safe blocking Queue of generic items.
     /// </summary>
     /// <typeparam name="T">The type of the item in the queue</typeparam>
-    public sealed class BlockingQueue<T>
+    public sealed class BlockingQueue<T> : IDisposable
     {
         private readonly Queue<T> _queue = new Queue<T>();
         private readonly object _barier = new object();                                              // Used to sync access to the queue from concurrent threads
@@ -17,7 +17,7 @@ namespace CodingTasks
         /// <summary>
         /// Adds item to the tail of the queue.
         /// </summary>
-        /// <typeparam name="T">The type of the item to push to the queue</typeparam>
+        /// <param name="item">The item to be added to the queue. The value can be a null reference.</param>
         public void Push(T item)
         {
             lock (_barier) {
@@ -29,9 +29,9 @@ namespace CodingTasks
         /// <summary>
         /// Removes and returns the item at the head of the queue.
         /// </summary>
-        /// <typeparam name="T">The type of the item to pop from the queue</typeparam>
+        /// <returns>The item removed from the queue.</returns>
         /// <remarks>
-        /// If the queue's empty, this method blocks calling thread until new item added to the queue.  
+        /// If the queue's empty, this method blocks calling thread until a new item is added to the queue.
         /// </remarks>
         public T Pop()
         {
@@ -43,5 +43,14 @@ namespace CodingTasks
                 _newObjectAvailable.Wait();
             }
         }
+
+        #region Implementation of IDisposable
+
+        public void Dispose()
+        {
+            _newObjectAvailable.Dispose();
+        }
+
+        #endregion
     }
 }
