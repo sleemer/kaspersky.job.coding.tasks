@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace CodingTasks.Algorithm.Tests
+namespace CodingTasks.Tests
 {
     public class GetPairsOfNumbersWithSumUnitTests
     {
         [Fact]
-        public void ShouldThrow_When_NumersAreEmpty()
+        public void ShouldThrow_When_NumbersAreEmpty()
         {
             // arrange
             // act
             // assert
-            Assert.Throws<ArgumentNullException>(() => Algorithms.GetPairsOfNumbersWithSum(null, 0));
+            Assert.Throws<ArgumentNullException>(() => Algorithm.GetPairsOfNumbersWithSum(null, 0));
         }
 
         [Theory]
@@ -26,7 +26,7 @@ namespace CodingTasks.Algorithm.Tests
             var expected = CreateArrayOfTuplesFromString(strExpected);
 
             // act
-            var actual = Algorithms.GetPairsOfNumbersWithSum(numbers, sum).ToArray();
+            var actual = Algorithm.GetPairsOfNumbersWithSum(numbers, sum).ToArray();
 
             // assert
             Assert.Equal(expected, actual);
@@ -39,12 +39,14 @@ namespace CodingTasks.Algorithm.Tests
         {
             // arrange
             // act
-            var actual = Algorithms.GetPairsOfNumbersWithSum(numbers, sum).ToArray();
+            var actual = Algorithm.GetPairsOfNumbersWithSum(numbers, sum).ToArray();
 
             // assert
             Assert.Empty(actual);
         }
 
+        // Parses a string and creates an array of tuples of two integers.
+        // Example of an input string: "(0,2) (1,1)"
         private static Tuple<int, int>[] CreateArrayOfTuplesFromString(string str)
             => str.Split(new[] { " " }, StringSplitOptions.None)
                   .Select(pair => pair.Split(new[] { ",", "(", ")" }, StringSplitOptions.RemoveEmptyEntries))

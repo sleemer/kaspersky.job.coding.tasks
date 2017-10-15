@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CodingTasks
 {
-    public static class Algorithms
+    public static class Algorithm
     {
         private static IEnumerable<Tuple<int, int>> Empty = new Tuple<int, int>[0];
 

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CodingTasks.BlockingQueue.StressTests
+namespace CodingTasks.StressTests
 {
     public class DryRunTests
     {
         [Fact]
-        public void OnePublisherOneReader()
+        public void BlockingQueue_OnePublisherOneReader()
         {
             // arrange
             var dequeuedValues = new ConcurrentDictionary<int, bool>(); // Used to check  blocking queue
@@ -25,7 +25,7 @@ namespace CodingTasks.BlockingQueue.StressTests
         }
 
         [Fact]
-        public void OnePublisherTwoReaders()
+        public void BlockingQueue_OnePublisherTwoReaders()
         {
             // arrange
             var dequeuedValues = new ConcurrentDictionary<int, bool>(); // Used to check  blocking queue
@@ -42,7 +42,7 @@ namespace CodingTasks.BlockingQueue.StressTests
         }
 
         [Fact]
-        public void TwoPublishersTwoReaders()
+        public void BlockingQueue_TwoPublishersTwoReaders()
         {
             // arrange
             var dequeuedValues = new ConcurrentDictionary<int, bool>(); // Used to check  blocking queue
@@ -60,7 +60,7 @@ namespace CodingTasks.BlockingQueue.StressTests
         }
 
         [Fact]
-        public void TwoPublishersFourReaders()
+        public void BlockingQueue_TwoPublishersFourReaders()
         {
             // arrange
             var dequeuedValues = new ConcurrentDictionary<int, bool>(); // Used to check  blocking queue
