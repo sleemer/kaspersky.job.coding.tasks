@@ -1,6 +1,18 @@
 @echo off
 
 echo -----------------------------
+echo Running dotnet restore
+echo -----------------------------
+
+call dotnet restore "..\tests\CodingTasks.Tests\CodingTasks.Tests.csproj"
+call dotnet restore "..\tests\CodingTasks.StressTests\CodingTasks.StressTests.csproj"
+
+if NOT %ERRORLEVEL% == 0 (
+    echo Dotnet restore has failed
+    goto end
+)
+
+echo -----------------------------
 echo Running .NET 4.6 Unit tests
 echo -----------------------------
 
